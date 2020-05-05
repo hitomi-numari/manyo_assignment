@@ -21,12 +21,11 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.deadline %></td>
-        <td><%= status_view(task.status) %></td>
-        <td><%= priority_view(tasks.priority) %></td>
-        <td><%= tasks.user.name %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
         <td><%= link_to '詳細', task %></td>
         <td><%= link_to '編集', task_path(task) %></td>
         <td><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

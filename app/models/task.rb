@@ -1,10 +1,4 @@
 class Task < ApplicationRecord
-  belongs_to :user
-  with_options presence: true do
-    validates :name
-    validates :title
-    validates :deadline
-    validates :status
-    validates :priority
-  end
+  enum status: %w(未着手 着手 完了)
+  enum priority: %w(低 中 高)
 end
