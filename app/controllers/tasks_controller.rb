@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :task_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -41,18 +41,18 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @picture.destroy
+    @task.destroy
     redirect_to tasks_path, notice:"タスクを削除しました！"
   end
 
   private
 
-  def set_picture
+  def set_task
     @task = Task.find(params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:name, :content)
+    params.require(:task).permit(:title, :content)
   end
 
 end
