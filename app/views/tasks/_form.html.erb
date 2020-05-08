@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title, "タスク名" %>
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :content, "タスク詳細" %>
+    <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
 
   <div class="field">
-    <%= form.label :deadline, "終了期限" %>
+    <%= form.label :deadline %>
     <%= raw sprintf(
             form.date_select(
               :deadline,
@@ -35,16 +35,16 @@
   </div>
 
   <div class="field">
-    <%= form.label :status, "状態" %>
+    <%= form.label :status %>
     <%= form.select :status, Task.statuses.keys, include_blank: "選択して下さい" %>
   </div>
 
   <div class="field">
-    <%= form.label :priority, "優先順位" %>
+    <%= form.label :priority %>
     <%= form.select :priority, Task.priorities.keys, include_blank: "選択して下さい" %>
   </div>
 
   <div class="actions">
-    <%= form.submit name="登録する"%>
+    <%= form.submit name=t('view.task.create_task')%>
   </div>
 <% end %>
