@@ -32,3 +32,42 @@ ____________
 ##Labelingテーブル
   task_id :bigint
   label_id :bigint
+
+#Herokuへデプロイ
+
+##コミットする
+  git commitコマンドを使用して、コミットをします。
+  ~/workspace/heroku_test_app (master) $ git add -A
+  ~/workspace/heroku_test_app (master) $ git commit -m "init"
+
+##Herokuに新しいアプリケーションを作成します。
+  ~/workspace/heroku_test_appに位置していることを確認して、Herokuに新しいアプリケーションを作成します。
+  $ heroku create
+  Creating app... done, ⬢ fierce-mountain-94329
+  <https://fierce-mountain-94329.herokuapp.com/> | https://git.heroku.com/fierce-mountain-94329.git
+  これで新しいアプリケーションが作成されました。
+  上記の場合、
+  https://fierce-mountain-94329.herokuapp.com/
+  がアプリケーションのURLになります。URLは毎回異なります。
+
+
+  Herokuにデプロイをする
+  それではHerokuにデプロイしていきましょう。
+
+##デプロイする前にアセットプリコンパイル する。（下記詳細）
+  $ rake assets:precompile RAILS_ENV=production
+
+  $git remote -v でherokuのpush先確認
+
+   $ git push heroku master
+  Counting objects: 92, done.
+  Delta compression using up to 8 threads.
+  Compressing objects: 100% (79/79), done.
+  Writing objects: 100% (92/92), 22.60 KiB | 0 bytes/s, done.
+  Total 92 (delta 2), reused 0 (delta 0)
+  ~ (省略) ~
+  remote: Verifying deploy... done.
+  To https://git.heroku.com/fierce-mountain-94329.git
+   * [new branch]      master -> master
+
+  上記のように表示されれば成功です。
