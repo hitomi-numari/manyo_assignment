@@ -38,7 +38,7 @@ ____________
 ##コミットする
   git commitコマンドを使用して、コミットをします。
   ~/workspace/heroku_test_app (master) $ git add -A
-  ~/workspace/heroku_test_app (master) $ git commit -m "init"
+  ~/workspace/heroku_test_app (master) $ git commit -m "コミットメッセージ"
 
 ##Herokuに新しいアプリケーションを作成します。
   ~/workspace/heroku_test_appに位置していることを確認して、Herokuに新しいアプリケーションを作成します。
@@ -51,7 +51,7 @@ ____________
   がアプリケーションのURLになります。URLは毎回異なります。
 
 
-  Herokuにデプロイをする
+##Herokuにデプロイをする
   それではHerokuにデプロイしていきましょう。
 
 ##デプロイする前にアセットプリコンパイル する。（下記詳細）
@@ -71,3 +71,9 @@ ____________
    * [new branch]      master -> master
 
   上記のように表示されれば成功です。
+
+##次に、データベースの移行を行います。
+  $ heroku run rails db:migrate
+
+##ブラウザで以下のURLにアクセスすれば起動します。
+  createした際のURL

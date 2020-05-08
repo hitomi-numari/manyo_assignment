@@ -23,9 +23,9 @@
         <td><%= task.deadline %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
-        <td><%= link_to '詳細', task %></td>
-        <td><%= link_to '編集', task_path(task) %></td>
-        <td><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('view.task.content'), task %></td>
+        <td><%= link_to t('view.task.edit_button'), task_path(task) %></td>
+        <td><%= link_to t('view.task.destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
