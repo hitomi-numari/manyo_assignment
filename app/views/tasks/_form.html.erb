@@ -36,12 +36,12 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys, include_blank: "選択して下さい" %>
+    <%= form.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい" %>
   </div>
 
   <div class="field">
     <%= form.label :priority %>
-    <%= form.select :priority, Task.priorities.keys, include_blank: "選択して下さい" %>
+    <%= form.select :priority, Task.priorities.keys.map {|k| [I18n.t("enums.tasks.priority.#{k}"), k]}, include_blank: "選択して下さい" %>
   </div>
 
   <div class="actions">

@@ -23,6 +23,18 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[2]).to have_content 'Factoryで作ったデフォルトのタイトル１'
       end
     end
+    context '終了期限でソートをした場合' do
+      it 'タスクが終了期限順に並んでいる' do
+        visit tasks_path
+        click_on '終了期限でソートする'
+        visit tasks_path(sort_expired: "true")
+        task_list = all('.task_row') # タスク一覧を配列として取得するため、View側でidを振っておく
+        expect(task_list[0]).to have_content 'Factoryで作ったデフォルトのタイトル３'
+        expect(task_list[1]).to have_content 'Factoryで作ったデフォルトのタイトル２'
+        expect(task_list[2]).to have_content 'Factoryで作ったデフォルトのタイトル１'
+      end
+    end
+
   end
 
   describe 'タスク登録画面' do
@@ -31,6 +43,11 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in '名前', with: '会議の準備'
         fill_in '詳細', with: '資料の作成'
+        select '2020', from: 'task_deadline_1i'
+        select '10', from: 'task_deadline_2i'
+        select '5', from: 'task_deadline_3i'
+        select '未着手', from: 'task_status'
+        select '高', from: 'task_priority'
         click_on "登録"
         expect(page).to have_content '資料の作成'
       end

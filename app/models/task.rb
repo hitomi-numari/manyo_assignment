@@ -1,6 +1,14 @@
 class Task < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
-  enum status: %w(未着手 着手 完了)
-  enum priority: %w(低 中 高)
+  enum status: {
+    no_started: 0,
+    in_progress: 1,
+    completed: 2
+  }
+  enum priority: {
+    high: 0,
+    middle:1,
+    low:2,
+  }
 end
