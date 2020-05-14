@@ -66,6 +66,15 @@ ja:
         high: 高
         middle: 中
         low: 低
+    task:
+      status:
+        no_started: 未着手
+        in_progress: 着手中
+        completed: 完了
+      priority:
+        high: 高
+        middle: 中
+        low: 低
   date:
     abbr_day_names:
     - 日

@@ -7,6 +7,8 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at:"DESC")
     end
+    @search_params = task_search_params
+    @tasks = Task.search(@search_params)
   end
 
   def new
@@ -56,7 +58,11 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority,)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+  end
+
+  def task_search_params
+    params.fetch(:search, {}).permit(:title, :status)
   end
 
 end
