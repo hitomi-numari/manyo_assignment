@@ -34,7 +34,28 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[2]).to have_content 'Factoryで作ったデフォルトのタイトル１'
       end
     end
-
+    context 'scopeメソッドで検索をした場合' do
+      it "scopeメソッドでタイトル検索ができる" do
+        visit tasks_path
+        fill_in '名前', with: 'Factoryで作ったデフォルトのタイトル１'
+        click_on '検索'
+        expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+      end
+      it "scopeメソッドでステータス検索ができる" do
+        visit tasks_path
+        select "着手中", from: "search_status"
+        click_on '検索'
+        expect(page).to have_content '着手中'
+      end
+      it "scopeメソッドでタイトルとステータスの両方が検索できる" do
+        visit tasks_path
+        fill_in '名前', with: "Factoryで作ったデフォルトのタイトル３"
+        select "未着手", from: "search_status"
+        click_on '検索'
+        expect(page).to have_content 'Factoryで作ったデフォルトのタイトル３'
+        expect(page).to have_content '未着手'
+      end
+    end
   end
 
   describe 'タスク登録画面' do
