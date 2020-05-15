@@ -4,8 +4,7 @@ class TasksController < ApplicationController
   PER = 5
 
   def index
-    @search_params = task_search_params
-    @tasks = Task.search(@search_params)
+
     if params[:sort_expired]
       @tasks = Task.all.order(deadline:"DESC")
     elsif params[:sort_created]
@@ -13,6 +12,15 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at:"DESC")
     end
+
+    if params[:sort_priority]
+      @tasks = Task.all.order(priority:"ASC")
+    else
+      @tasks = Task.all.order(created_at:"DESC")
+    end
+
+    @search_params = task_search_params
+    @tasks = Task.search(@search_params)
 
     @tasks = @tasks.page(params[:page]).per(PER)
 

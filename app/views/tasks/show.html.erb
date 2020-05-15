@@ -19,12 +19,12 @@
 
 <p>
   <strong><%= t('view.task.status') %></strong>
-  <%= @task.status %>
+  <%= @task.status_i18n %>
 </p>
 
 <p>
   <strong><%= t('view.task.priority') %></strong>
-  <%= @task.priority %>
+  <%= @task.priority_i18n %>
 </p>
 
 <%= link_to t('view.task.edit_button'), action: "edit" %>

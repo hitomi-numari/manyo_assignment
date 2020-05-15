@@ -1,27 +1,36 @@
+<div class="container-fluid">
+
 <p id="notice"><%= notice %></p>
 
 <h1><%= t('view.task.task_lists') %></h1>
 
-<%= form_with(scope: :search, url: tasks_path, method: :get, local: true) do |f| %>
+<%= form_with(scope: :search, url: tasks_path, method: :get, local: true, class: "form-inline") do |f| %>
 
-  <div class="field">
+<h2><%= t('view.task.search') %></h2>
+
+  <div class="form-group">
     <%= f.label :title_search, t('view.task.title') %>
-    <%= f.text_field :title, value: @search_params[:title] %>
+    <%= f.text_field :title, value: @search_params[:title], placeholder: "例) 会議" %>
   </div>
 
-  <div class="field">
+  <div class="form_group">
     <%= f.label :status_search, t('view.task.status') %>
     <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい", value: @search_params[:status] %>
   </div>
 
-  <%= f.submit t('view.task.search') %>
+  <%= f.submit t('view.task.search'), class: "btn btn-default" %>
+  <br>
+  <br>
+  <%= link_to t('view.task.back'), root_path %>
 
 <% end %>
 
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
-<%= link_to "作成日時でソートする", tasks_path(sort_created: "true") %>
+<h2><%= t('view.task.sort') %></h2>
+  <%= link_to Task.human_attribute_name(:deadline), tasks_path(sort_expired: "true"), class:"btn btn-default" %>
+  <%= link_to Task.human_attribute_name(:created_at), tasks_path(sort_created: "true"), class:"btn btn-default" %>
+  <%= link_to Task.human_attribute_name(:priority), tasks_path(sort_priority: "true"), class:"btn btn-default" %>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th><%= t('view.task.title') %></th>
@@ -42,13 +51,15 @@
         <td><%= task.status_i18n %></td>
         <td><%= task.priority_i18n %></td>
         <td><%= link_to t('view.task.content'), task %></td>
-        <td><%= link_to t('view.task.edit_button'), task_path(task) %></td>
+        <td><%= link_to t('view.task.edit_button'), edit_task_path(task) %></td>
         <td><%= link_to t('view.task.destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= paginate @tasks %>
-<br>
 
-<%= link_to 'タスクを登録する', action: "new" %>
+<%= paginate @tasks %>
+
+<%= link_to 'タスクを登録する', new_task_path, class:"btn btn-default btn-block" %>
+
+</div>
