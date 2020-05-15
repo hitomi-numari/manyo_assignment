@@ -13,8 +13,11 @@ class Task < ApplicationRecord
         title_like(search_params[:title])
       elsif search_params[:status].present?
         status_is(search_params[:status])
-      end        
-    end
+      end
+  end
     scope :title_like, -> (title) { where('title LIKE ?', "%#{title}%") }
     scope :status_is, -> (status) { where(status: status) }
+    scope :sort_deadline, -> { order(deadline: :desc) }
+    scope :sort_created, -> { order(created_at: :desc) }
+    scope :sort_priority, -> { order(priority: :asc) }
 end

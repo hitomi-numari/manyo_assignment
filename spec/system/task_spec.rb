@@ -26,7 +26,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '終了期限でソートをした場合' do
       it 'タスクが終了期限順に並んでいる' do
         visit tasks_path
-        click_on '終了期限でソートする'
+        click_on '終了期限'
         visit tasks_path(sort_expired: "true")
         task_list = all('.task_row') # タスク一覧を配列として取得するため、View側でidを振っておく
         expect(task_list[0]).to have_content 'Factoryで作ったデフォルトのタイトル３'

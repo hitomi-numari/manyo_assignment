@@ -5,22 +5,22 @@ class TasksController < ApplicationController
 
   def index
 
+    @search_params = task_search_params
+    @tasks = Task.search(@search_params)
+
     if params[:sort_expired]
-      @tasks = Task.all.order(deadline:"DESC")
+      @tasks = Task.sort_deadline
     elsif params[:sort_created]
-      @tasks = Task.all.order(created_at:"DESC")
+      @tasks = Task.sort_created
     else
-      @tasks = Task.all.order(created_at:"DESC")
+      @tasks = Task.sort_created
     end
 
     if params[:sort_priority]
-      @tasks = Task.all.order(priority:"ASC")
+      @tasks = Task.sort_priority
     else
-      @tasks = Task.all.order(created_at:"DESC")
+      @tasks = Task.sort_created
     end
-
-    @search_params = task_search_params
-    @tasks = Task.search(@search_params)
 
     @tasks = @tasks.page(params[:page]).per(PER)
 
@@ -73,7 +73,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority )
   end
 
   def task_search_params
