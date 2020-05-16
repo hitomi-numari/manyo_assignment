@@ -4,22 +4,16 @@ class TasksController < ApplicationController
   PER = 5
 
   def index
-
+# binding.pry
     @search_params = task_search_params
     @tasks = Task.search(@search_params)
 
     if params[:sort_expired]
-      @tasks = Task.sort_deadline
-    elsif params[:sort_created]
-      @tasks = Task.sort_created
+      @tasks = @tasks.sort_deadline
+    elsif params[:sort_priority]
+      @tasks = @tasks.sort_priority
     else
-      @tasks = Task.sort_created
-    end
-
-    if params[:sort_priority]
-      @tasks = Task.sort_priority
-    else
-      @tasks = Task.sort_created
+      @tasks = @tasks.sort_created
     end
 
     @tasks = @tasks.page(params[:page]).per(PER)
