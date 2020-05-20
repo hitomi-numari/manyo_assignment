@@ -36,7 +36,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
-  gem 'pry-nav' 
+  gem 'pry-nav'
 end
 
 group :development do
@@ -69,3 +69,5 @@ gem 'rails-i18n'
 gem 'enum_help'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'faker'
+gem 'bcrypt', '3.1.11'

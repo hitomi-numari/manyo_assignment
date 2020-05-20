@@ -52,7 +52,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'search_title', with: "Factoryで作ったデフォルトのタイトル３"
         select "未着手", from: "search_status"
         click_on '検索'
-        expect(page).to have_content 'Factoryで作ったデフォルトのタイトル３'
+        expect(page).to have_content 'Factoryで作ったデフォルトのタイトル３', "未着手"
         expect(page).to have_content '未着手'
       end
     end

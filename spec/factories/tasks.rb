@@ -5,6 +5,7 @@ FactoryBot.define do
   factory :task do
     title { 'Factoryで作ったデフォルトのタイトル１' }
     content { 'Factoryで作ったデフォルトのコンテント１' }
+    status {'completed'}
     deadline { DateTime.now}
   end
   # 作成するテストデータの名前を「second_task」とします
