@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :deadline %>
     <%= raw sprintf(
             form.date_select(
@@ -34,17 +34,17 @@
               '年 ', '月 ') + '日' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys, include_blank: "選択して下さい" %>
+    <%= form.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :priority %>
-    <%= form.select :priority, Task.priorities.keys, include_blank: "選択して下さい" %>
+    <%= form.select :priority, Task.priorities.keys.map {|k| [I18n.t("enums.tasks.priority.#{k}"), k]}, include_blank: "選択して下さい" %>
   </div>
 
   <div class="actions">
-    <%= form.submit name=t('view.task.create_task')%>
+    <%= form.submit name=t('view.task.create_task'), class:"btn btn-default"%>
   </div>
 <% end %>

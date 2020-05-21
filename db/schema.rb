@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_104836) do
+ActiveRecord::Schema.define(version: 2020_05_16_152007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,15 +21,19 @@ ActiveRecord::Schema.define(version: 2020_05_09_104836) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "deadline", default: -> { "now()" }, null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "priority"
     t.bigint "user_id"
+    t.index ["title"], name: "index_tasks_on_title"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
   end
 
   add_foreign_key "tasks", "users"

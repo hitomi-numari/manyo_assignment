@@ -21,7 +21,7 @@ ja:
         deadline: "終了期限"
         status: "ステータス"
         priority: "優先順位"
-        created_at: "登録日時"
+        created_at: "作成日時"
         updated_at: "更新日時"
       label:
         name: "ラベル名"

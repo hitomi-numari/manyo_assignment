@@ -7,9 +7,6 @@ ja:
       create_at: 作成日時
       deadline: 終了期限
       status: ステータス
-      status0: 未着手
-      status1: 未着中
-      status2: 完了
       task_lists: タスク一覧
       new_task: タスク新規作成
       new_task_complete: タスク新規作成が完了しました。
@@ -61,14 +58,23 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
   enums:
     tasks:
+      status:
+        no_started: 未着手
+        in_progress: 着手中
+        completed: 完了
       priority:
         high: 高
         middle: 中
         low: 低
-      completed:
+    task:
+      status:
         no_started: 未着手
         in_progress: 着手中
         completed: 完了
+      priority:
+        high: 高
+        middle: 中
+        low: 低
   date:
     abbr_day_names:
     - 日
