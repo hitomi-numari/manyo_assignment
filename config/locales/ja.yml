@@ -49,6 +49,7 @@ ja:
       destroy_errer: 削除にエラーがあります。現在あなたのみが管理人のためユーザー削除できません。
     session:
       login: ログイン
+      logout: ログアウト
   activerecord:
     errors:
       messages:

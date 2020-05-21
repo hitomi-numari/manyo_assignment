@@ -10,6 +10,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <ol class="breadcrumb">
+      <% if logged_in? %>
+        <li><%= link_to t('view.user.mypage'), user_path(current_user.id) %></li>
+        <li><%= link_to t('view.session.logout'), session_path(current_user.id), method: :delete %></li>
+        <li><%= current_user.name %>のページ</li>
+      <% else %>
+        <li class="active"><%= link_to t('view.session.login'), new_session_path %></li>
+      <% end %>
+      </ol>
+    </header>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

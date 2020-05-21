@@ -11,19 +11,26 @@ module SessionsHelper
     redirect_to sessions_new_path, notice: 'ログインが必要な機能です' unless logged_in?
   end
 
-  def ensure_correct_post
+  def ensure_correct_task
     @task = Task.find_by(id: params[:id])
     if current_user.id != @task.user_id
       flash[:danger] = "権限がありません"
-      redirect_to action: "index"
+      redirect_to tasks_path
     end
   end
 
   def ensure_correct_user
     @user = User.find_by(id: params[:id])
     if current_user.id != @user.id
-      flash[:danger] = "権限がありません"
-      redirect_to action: "index"
+      flash[:danger] = "権限がありません。ログインしてください。"
+      redirect_to tasks_path
+    end
+  end
+
+  def logout?
+    if logged_in?
+      flash[:danger] = "ログアウトしてください。"
+      redirect_to tasks_path
     end
   end
 end

@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in?
+  before_action :ensure_correct_task, only: [:edit, :update, :destroy]
 
   PER = 5
 
   def index
-# binding.pry
     @search_params = task_search_params
     @tasks = Task.search(@search_params)
 
