@@ -16,9 +16,13 @@
         <li><%= link_to t('view.user.mypage'), user_path(current_user.id) %></li>
         <li><%= link_to t('view.session.logout'), session_path(current_user.id), method: :delete %></li>
         <li><%= current_user.name %>のページ</li>
+        <% if current_user.admin? %>
+          <li><%= link_to t('view.user.user_admin_page'), admin_users_path %></li>
+        <% end %>
       <% else %>
         <li class="active"><%= link_to t('view.session.login'), new_session_path %></li>
       <% end %>
+
       </ol>
     </header>
     <div class="container">
