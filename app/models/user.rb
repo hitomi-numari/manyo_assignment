@@ -23,6 +23,7 @@ class User < ApplicationRecord
   end
 
   def admin_user_last_destroy?
+    @admin_user = User.where(admin: true)
     throw(:abort) if @admin_user.count == 1 && self.admin?
     errors.add(:user, 'には少なくとも１名のadmin権限者が必要です。')
   end

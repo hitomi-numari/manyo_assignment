@@ -5,11 +5,9 @@ class UsersController < ApplicationController
 
   def new
     if logged_in?
-      @tasks = Task.all
-      render 'pictures/index'
+      redirect_to user_path(current_user.id)
     else
       @user = User.new
-      render 'new'
     end
   end
 
