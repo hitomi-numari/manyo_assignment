@@ -1,14 +1,13 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   before do
-    user1 = create(:user)
-    admin_user = create(:admin_user)
-    task1 = create(:task, user: user1)
-    task2 = create(:second_task, user: user1)
-    task3 = create(:third_task, user: user1)
-
+    @user1 = create(:user)
+    @user2 = create(:second_user)
+    @task1 = create(:task, user: @user1)
+    @task2 = create(:second_task, user: @user1)
+    @task3 = create(:third_task, user: @user1)
     visit root_path
-    fill_in 'session_email', with: 'sample@example.com'
+    fill_in 'session_email', with: 'test_user_01@sample.com'
     fill_in "session_password", with: '00000000'
     find('input.click2').click
   end
@@ -85,9 +84,9 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe 'タスク詳細画面' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示されたページに遷移する' do
-         task_a = FactoryBot.create(:task, title: '訪問', content: '企画書作成')
-         visit task_path(task_a)
-         expect(page).to have_content '訪問', '企画書作成'
+         visit task_path(@task1.id)
+         expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+         expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
        end
      end
   end
