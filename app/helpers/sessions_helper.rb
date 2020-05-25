@@ -7,6 +7,10 @@ module SessionsHelper
     current_user.present?
   end
 
+  def require_login
+    redirect_to new_session_path unless current_user.present?
+  end
+
   def authorize
     redirect_to sessions_new_path, notice: 'ログインが必要な機能です' unless logged_in?
   end

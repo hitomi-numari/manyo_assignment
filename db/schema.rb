@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_180308) do
+ActiveRecord::Schema.define(version: 2020_05_23_185923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2020_05_21_180308) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "deadline", default: -> { "now()" }, null: false
-    t.integer "status", default: 0
+    t.date "deadline"
+    t.integer "status"
     t.integer "priority"
     t.bigint "user_id"
     t.index ["title"], name: "index_tasks_on_title"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_180308) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "tasks", "users"

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :name, length: { in: 3..32 }
@@ -11,11 +11,11 @@ class User < ApplicationRecord
   before_destroy :admin_user_last_destroy?
 
   private
-binding.pry
 
   def admin_user_last_update?
     @admin_user = User.where(admin: true)
-    if (@admin_user.count == 1 && @admin_user.first == User) && !(User.admin?)
+    if (@admin_user.count == 1 && @admin_user.first == self) && !(self.admin?)
+      #最後のadminですよっていう確認→checkboxの変更がされてるけど大丈夫？の確認
       errors.add(:user, '更新にエラーがあります。現在あなたのみが管理人のため管理人から外れることはできません。')
       throw :abort
     end

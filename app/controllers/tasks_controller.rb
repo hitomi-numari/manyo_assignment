@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
+  before_action :require_login
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in?
   before_action :ensure_correct_task, only: [:edit, :update, :destroy]
 
   PER = 5

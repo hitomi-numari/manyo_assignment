@@ -1,9 +1,16 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   before do
-    task1 = create(:task)
-    task2 = create(:second_task)
-    task3 = create(:third_task)
+    user1 = create(:user)
+    admin_user = create(:admin_user)
+    task1 = create(:task, user: user1)
+    task2 = create(:second_task, user: user1)
+    task3 = create(:third_task, user: user1)
+
+    visit root_path
+    fill_in 'session_email', with: 'sample@example.com'
+    fill_in "session_password", with: '00000000'
+    find('input.click2').click
   end
   describe 'タスク一覧画面' do
     context 'タスクを作成した場合' do
