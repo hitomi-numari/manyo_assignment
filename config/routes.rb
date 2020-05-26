@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-  root :to => 'tasks#index'
+  resources :sessions
   resources :tasks
+  resources :users
+  namespace :admin do
+   resources :users
+ end
+  root :to => 'sessions#new'
 end

@@ -46,9 +46,10 @@ ja:
       admin: 管理人
       destroy_confirm: ユーザーを削除しますか？
       user_admin_page: ユーザー管理画面
-      destroy_errer: 削除にエラーがあります。現在あなたのみが管理人のためユーザー削除できません。
+      destroy_error: 削除にエラーがあります。現在あなたのみが管理人のためユーザー削除できません。
     session:
       login: ログイン
+      logout: ログアウト
   activerecord:
     errors:
       messages:
