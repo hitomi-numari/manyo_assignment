@@ -27,5 +27,12 @@
   <%= @task.priority_i18n %>
 </p>
 
+<p>
+  <strong><%= t('view.task.label_lists') %></strong>
+  <% @task.labels.each do |label| %>
+    <span><%= label.name %></span>
+  <% end %>
+</p>
+
 <%= link_to t('view.task.edit_button'), action: "edit" %>
 <%= link_to t('view.task.back'), action: "index" %>

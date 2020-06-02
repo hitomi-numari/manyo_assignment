@@ -17,7 +17,8 @@
   </div>
 
   <div class="form_group">
-    <%= f.select("label_id", Label.pluck(:name, :id), include_blank: "選択して下さい" ) %>
+    <%= f.label :title_search, t('view.task.label') %>
+    <%= f.select("label_id", Label.pluck(:name, :id), include_blank: "選択して下さい", value: @search_params[:label_id] ) %>
   </div>
 
   <%= f.submit t('view.task.search'), class: "btn btn-default" %>
