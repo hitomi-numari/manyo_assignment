@@ -18,6 +18,10 @@
     <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい", value: @search_params[:status] %>
   </div>
 
+  <div class="form_group">
+    <%= f.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+  </div>
+
   <%= f.submit t('view.task.search'), class: "btn btn-default" %>
   <br>
   <br>
@@ -53,6 +57,11 @@
         <td><%= link_to t('view.task.content'), task %></td>
         <td><%= link_to t('view.task.edit_button'), edit_task_path(task) %></td>
         <td><%= link_to t('view.task.destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% task.labels.each do |label| %>
+          <%= label.name %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
