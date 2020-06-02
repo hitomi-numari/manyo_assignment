@@ -1,7 +1,5 @@
 <div class="container-fluid">
 
-<p id="notice"><%= notice %></p>
-
 <h1><%= t('view.task.task_lists') %></h1>
 
 <%= form_with(scope: :search, url: tasks_path, method: :get, local: true, class: "form-inline") do |f| %>
@@ -19,13 +17,13 @@
   </div>
 
   <div class="form_group">
-    <%= f.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+    <%= f.select("label_id", Label.pluck(:name, :id), include_blank: "選択して下さい" ) %>
   </div>
 
   <%= f.submit t('view.task.search'), class: "btn btn-default" %>
   <br>
   <br>
-  <%= link_to t('view.task.back'), root_path %>
+  <%= link_to t('view.task.back'), tasks_path %>
 
 <% end %>
 
@@ -42,6 +40,10 @@
       <th><%= t('view.task.deadline') %></th>
       <th><%= t('view.task.status') %></th>
       <th><%= t('view.task.priority') %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><%= t('view.task.label') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

@@ -5,14 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-100.times do |n|
-  name = Faker::Games::Pokemon.name
-  email = Faker::Internet.email
-  password = "password"
-  User.create!(name: name,
-               email: email,
-               password: password,
-               password_confirmation: password,
-               admin: true
-               )
-end
+
+Label.create!(
+    name: 'イベント関連',
+)
+Label.create!(
+    name: '会議',
+)
+
+Label.create!(
+    name: '社内手続き',
+)
+
+Label.create!(
+    name: 'プロジェクト案件',
+)

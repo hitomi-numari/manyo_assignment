@@ -42,7 +42,8 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to tasks_path, notice: 'タスクを登録しました'
+        flash[:success] = "タスクを登録しました"
+        redirect_to task_path(@task.id)
       else
         render :new
       end
