@@ -8,17 +8,17 @@
 
   <div class="form-group">
     <%= f.label :title_search, t('view.task.title') %>
-    <%= f.text_field :title, value: @search_params[:title], placeholder: "例) 会議" %>
+    <%= f.text_field :title, value: @task_search_params[:title], placeholder: "例) 会議" %>
   </div>
 
   <div class="form_group">
     <%= f.label :status_search, t('view.task.status') %>
-    <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい", value: @search_params[:status] %>
+    <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい", value: @task_search_params[:status] %>
   </div>
 
   <div class="form_group">
-    <%= f.label :title_search, t('view.task.label') %>
-    <%= f.select("label_id", Label.pluck(:name, :id), include_blank: "選択して下さい", value: @search_params[:label_id] ) %>
+    <%= f.label :label_search, t('view.task.label') %>
+    <%= f.select("label_id", Label.pluck(:name, :id), include_blank: "選択して下さい", value: @task_search_params[:label_id] ) %>
   </div>
 
   <%= f.submit t('view.task.search'), class: "btn btn-default" %>
