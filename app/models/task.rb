@@ -11,16 +11,17 @@ class Task < ApplicationRecord
     return if task_search_params.blank?
       if task_search_params[:title].present? && task_search_params[:status].present? && task_search_params[:label_id].present?
         title_like(task_search_params[:title])
-        status_is(task_search_params[:status])
+        .status_is(task_search_params[:status])
+        .label_is(task_search_params[:label_id])
       elsif task_search_params[:title].present? && task_search_params[:status].present?
         title_like(task_search_params[:title])
-        status_is(task_search_params[:status])
+        .status_is(task_search_params[:status])
       elsif task_search_params[:title].present? && task_search_params[:label_id].present?
         title_like(task_search_params[:title])
-        label_is(task_search_params[:label_id])
+        .label_is(task_search_params[:label_id])
       elsif task_search_params[:status].present? && task_search_params[:label_id].present?
         status_is(task_search_params[:status])
-        label_is(task_search_params[:label_id])
+        .label_is(task_search_params[:label_id])
       elsif task_search_params[:title].present?
         title_like(task_search_params[:title])
       elsif task_search_params[:status].present?
