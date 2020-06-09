@@ -102,7 +102,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content '資料の作成'
         expect(page).to have_content "Factoryで作ったデフォルトのラベル１"
         expect(page).to have_content 'Factoryで作ったデフォルトのラベル３'
-        expect(page).to have_content '2020/10/5'
+        expect(page).to have_content '2020-10-05'
         expect(page).to have_content '未着手'
         expect(page).to have_content '高'
       end

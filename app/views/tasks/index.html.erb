@@ -13,12 +13,12 @@
 
   <div class="form_group">
     <%= f.label :status_search, t('view.task.status') %>
-    <%= f.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, include_blank: "選択して下さい", value: @task_search_params[:status] %>
+    <%= f.select :status, options_for_select(Task.statuses.keys.map {|k| [I18n.t("enums.tasks.status.#{k}"), k]}, selected: @task_search_params[:status]), include_blank: "選択して下さい" %>
   </div>
 
   <div class="form_group">
     <%= f.label :label_search, t('view.task.label') %>
-    <%= f.select("label_id", Label.pluck(:name, :id), include_blank: "選択して下さい", value: @task_search_params[:label_id] ) %>
+    <%= f.select("label_id", options_for_select(Label.pluck(:name, :id), selected: @task_search_params[:label_id]), include_blank: "選択して下さい")%>
   </div>
 
   <%= f.submit t('view.task.search'), class: "btn btn-default" %>
