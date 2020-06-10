@@ -2,12 +2,13 @@ class TasksController < ApplicationController
   before_action :require_login
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_task, only: [:edit, :update, :destroy]
-
   PER = 5
 
   def index
-    @search_params = task_search_params
-    @tasks = Task.search(@search_params)
+    # binding.pry
+    @task_search_params = task_search_params
+    @tasks = Task.all
+    @tasks = @tasks.search(@task_search_params)
 
     if params[:sort_expired]
       @tasks = @tasks.sort_deadline
@@ -42,7 +43,8 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to tasks_path, notice: 'タスクを登録しました'
+        flash[:success] = "タスクを登録しました"
+        redirect_to task_path(@task.id)
       else
         render :new
       end
@@ -69,11 +71,11 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority )
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, {label_ids: []})
   end
 
   def task_search_params
-    params.fetch(:search, {}).permit(:title, :status)
+    params.fetch(:search, {}).permit(:title, :status, :label_id)
   end
 
 end

@@ -71,3 +71,7 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'faker'
 gem 'bcrypt', '3.1.11'
+
+group :development, :production, :test do
+    gem 'jquery-rails'
+end

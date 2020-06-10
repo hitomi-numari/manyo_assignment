@@ -27,12 +27,13 @@ ja:
       priority: 優先度
       login: ログインしてください
       label: ラベル
+      label_lists: ラベル一覧
     user:
       mypage: マイページ
       page: のページ
       sign_up: ユーザー登録
       register: 登録
-      name: 名前
+      name: 登録者
       email: メールアドレス
       password: パスワード
       password_confirmation: パスワード(確認用)
