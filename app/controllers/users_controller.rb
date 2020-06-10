@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:show]
-  before_action :redirect_if_login
+  before_action :redirect_if_login, only: [:new]
 
   def new
     if logged_in?
